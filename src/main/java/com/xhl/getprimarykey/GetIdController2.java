@@ -93,7 +93,7 @@ public class GetIdController2 implements PrimaryKeyService {
         return ResultUtil.success(jsonObject);
     }
 
-    private String get(@PathVariable("key") String key, com.sankuai.inf.leaf.common.Result id) {
+    private String get(String key, com.sankuai.inf.leaf.common.Result id) {
         com.sankuai.inf.leaf.common.Result result;
         if (key == null || key.isEmpty()) {
             throw new NoKeyException();
