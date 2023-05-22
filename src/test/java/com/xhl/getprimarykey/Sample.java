@@ -31,7 +31,7 @@ public class Sample {
 
     public static void main(String[] args_) throws Exception {
 //        java.util.List<String> args = java.util.Arrays.asList(args_);
-        com.aliyun.dyvmsapi20170525.Client client = Sample.createClient("LTAI5tMtTRBqjFoFnKR2QvJN", "GM1CoPNiyJg4Y0gI1NYzfuCbHPKy3V");
+        com.aliyun.dyvmsapi20170525.Client client = Sample.createClient("", "");
 //        SingleCallByVoiceRequest singleCallByVoiceRequest = new SingleCallByVoiceRequest()
 //                .setCalledShowNumber("0571000010989")
 //                .setCalledNumber("15210905264")

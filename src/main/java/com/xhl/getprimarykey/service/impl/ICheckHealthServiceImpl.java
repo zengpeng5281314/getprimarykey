@@ -10,6 +10,7 @@ import com.xhl.getprimarykey.service.ICheckHealthService;
 import lombok.extern.java.Log;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -20,7 +21,10 @@ import java.util.concurrent.TimeUnit;
 @Log
 public class ICheckHealthServiceImpl implements ICheckHealthService {
 
-    private volatile boolean isSend = true;
+    @Value("void.accessKeyId")
+    private  String voidAccessKeyId;
+    @Value("void.accessKeySecret")
+    private String voidAccessKeySecret;
 
     @Autowired
     AppPushFeignService appPushFeignService;
@@ -394,15 +398,13 @@ public class ICheckHealthServiceImpl implements ICheckHealthService {
             }
             log.info("服务检查结束");
             if (StringUtils.isNotBlank(serName.toString())) {
-                if (isSend) {
-                    //五分钟之内只调用一次电话通知接口
-                    if(redisUtil.setIfAbsentOutTime("sendVoid",serName.toString(),5, TimeUnit.MINUTES)) {
-                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");
-                        log.info("总服务异常：" + serName);
-                        sendVoid(serName.toString(), sdf.format(new Date()));
-                        isSend = false;
-                    }
+                //五分钟之内只调用一次电话通知接口
+                if (redisUtil.setIfAbsentOutTime("sendVoid", serName.toString(), 5, TimeUnit.MINUTES)) {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH时mm分");
+                    log.info("总服务异常：" + serName);
+                    sendVoid(serName.toString(), sdf.format(new Date()));
                 }
+
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -430,7 +432,7 @@ public class ICheckHealthServiceImpl implements ICheckHealthService {
     }
 
     private void sendVoid(String serverName, String time) throws Exception {
-        com.aliyun.dyvmsapi20170525.Client client = createClient("LTAI5tMtTRBqjFoFnKR2QvJN", "GM1CoPNiyJg4Y0gI1NYzfuCbHPKy3V");
+        com.aliyun.dyvmsapi20170525.Client client = createClient(voidAccessKeyId, voidAccessKeySecret);
 //        SingleCallByVoiceRequest singleCallByVoiceRequest = new SingleCallByVoiceRequest()
 //                .setCalledShowNumber("0571000010989")
 //                .setCalledNumber("15210905264")
