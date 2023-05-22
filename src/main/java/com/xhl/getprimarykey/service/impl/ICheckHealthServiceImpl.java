@@ -21,9 +21,9 @@ import java.util.concurrent.TimeUnit;
 @Log
 public class ICheckHealthServiceImpl implements ICheckHealthService {
 
-    @Value("void.accessKeyId")
+    @Value(value = "${void.accessKeyId}")
     private  String voidAccessKeyId;
-    @Value("void.accessKeySecret")
+    @Value(value = "${void.accessKeySecret}")
     private String voidAccessKeySecret;
 
     @Autowired

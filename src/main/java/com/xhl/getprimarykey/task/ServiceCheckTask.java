@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -16,8 +15,8 @@ public class ServiceCheckTask {
     ICheckHealthService checkHealthService;
     @Autowired
     RedisUtil redisUtil;
-    @Value("service.check")
-    private boolean serviceCheck;
+    @Value(value = "${service.check}")
+    private Boolean serviceCheck;
 
 
     // 添加定时任务 cron表达式：每2分钟执行一次
