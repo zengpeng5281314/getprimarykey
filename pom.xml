@@ -35,10 +35,19 @@
             <version>2.2.8.RELEASE</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>2.2.9.RELEASE</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
             <version>2.2.2.RELEASE</version>
             <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -103,21 +112,87 @@
             <version>1.2.70</version>
         </dependency>
 
+        <!-- 云通信语音服务  -->
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>dyvmsapi20170525</artifactId>
+            <version>2.1.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
+                    <!--不打入jar包的文件类型或者路径-->
                     <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
+                        <exclude>*.properties</exclude>
+                        <exclude>*.yml</exclude>
+                        <exclude>*.yaml</exclude>
                     </excludes>
+                    <archive>
+                        <manifest>
+                            <!-- 执行的主程序路径 -->
+                            <mainClass>com.xhl.getprimarykey.GetprimarykeyApplication</mainClass>
+                            <!--是否要把第三方jar放到manifest的classpath中-->
+                            <addClasspath>true</addClasspath>
+                            <!--生成的manifest中classpath的前缀，因为要把第三方jar放到lib目录下，所以classpath的前缀是lib/-->
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <!-- 打包时 MANIFEST.MF 文件不记录的时间戳版本 -->
+                            <useUniqueVersions>false</useUniqueVersions>
+                        </manifest>
+                        <manifestEntries>
+                            <!-- 在 Class-Path 下添加配置文件的路径 -->
+                            <Class-Path>resources/</Class-Path>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib/</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <!--把配置文件打包到指定路径-->
+                                <resource>
+                                    <directory>src/main/resources/</directory>
+                                    <includes>
+                                        <include>*.properties</include>
+                                        <include>*.yml</include>
+                                        <exclude>*.yaml</exclude>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <outputDirectory>${project.build.directory}/resources</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
