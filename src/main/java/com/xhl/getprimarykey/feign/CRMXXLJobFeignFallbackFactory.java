@@ -11,6 +11,7 @@ public class CRMXXLJobFeignFallbackFactory implements FallbackFactory<CRMXXLJobF
 
     @Override
     public CRMXXLJobFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new CRMXXLJobFeignService() {
             @Override
             public String checkCRMXXLjobHealth() {

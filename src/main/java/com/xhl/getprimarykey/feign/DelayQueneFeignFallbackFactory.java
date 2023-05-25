@@ -11,6 +11,7 @@ public class DelayQueneFeignFallbackFactory implements FallbackFactory<Delayquen
 
     @Override
     public DelayqueneFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new DelayqueneFeignService() {
             @Override
             public String checkDelayQueneHealth() {

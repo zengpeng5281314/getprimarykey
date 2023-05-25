@@ -11,6 +11,7 @@ public class OpenAPIFeignFallbackFactory implements FallbackFactory<OpenAPIFeign
 
     @Override
     public OpenAPIFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new OpenAPIFeignService() {
             @Override
             public String checkOpenAPIHealth() {

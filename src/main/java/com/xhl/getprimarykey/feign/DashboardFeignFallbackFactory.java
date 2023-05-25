@@ -11,6 +11,7 @@ public class DashboardFeignFallbackFactory implements FallbackFactory<DashboardF
 
     @Override
     public DashboardFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new DashboardFeignService() {
             @Override
             public String checkDashboardHealth() {

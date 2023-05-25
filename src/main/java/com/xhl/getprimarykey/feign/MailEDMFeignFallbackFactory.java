@@ -11,6 +11,7 @@ public class MailEDMFeignFallbackFactory implements FallbackFactory<MailEDMFeign
 
     @Override
     public MailEDMFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new MailEDMFeignService() {
             @Override
             public String checkMailEDMHealth() {

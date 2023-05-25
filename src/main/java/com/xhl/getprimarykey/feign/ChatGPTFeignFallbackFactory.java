@@ -11,6 +11,7 @@ public class ChatGPTFeignFallbackFactory implements FallbackFactory<ChatGPTFeign
 
     @Override
     public ChatGPTFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new ChatGPTFeignService() {
             @Override
             public String checkChatGPTHealth() {

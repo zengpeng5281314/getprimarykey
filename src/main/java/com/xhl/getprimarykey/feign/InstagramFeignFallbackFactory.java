@@ -11,6 +11,7 @@ public class InstagramFeignFallbackFactory implements FallbackFactory<InstagramF
 
     @Override
     public InstagramFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new InstagramFeignService() {
             @Override
             public String checkInstagramHealth() {

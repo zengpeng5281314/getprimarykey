@@ -11,6 +11,7 @@ public class CrawlerFeignFallbackFactory implements FallbackFactory<CrawlerFeign
 
     @Override
     public CrawlerFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new CrawlerFeignService() {
             @Override
             public String checkCrawlerHealth() {

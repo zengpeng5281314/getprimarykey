@@ -11,6 +11,7 @@ public class MinorFeignFallbackFactory implements FallbackFactory<MinorFeignServ
 
     @Override
     public MinorFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new MinorFeignService() {
             @Override
             public String checkMinorHealth() {

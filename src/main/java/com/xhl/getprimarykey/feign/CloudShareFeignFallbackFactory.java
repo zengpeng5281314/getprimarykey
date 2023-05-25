@@ -11,6 +11,7 @@ public class CloudShareFeignFallbackFactory implements FallbackFactory<CloudShar
 
     @Override
     public CloudShareFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new CloudShareFeignService() {
             @Override
             public String checkCloudShareHealth() {

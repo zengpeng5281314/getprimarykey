@@ -11,6 +11,7 @@ public class ReceiveMailFeignFallbackFactory implements FallbackFactory<ReceiveM
 
     @Override
     public ReceiveMailFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new ReceiveMailFeignService() {
             @Override
             public String checkReceiveMailHealth() {

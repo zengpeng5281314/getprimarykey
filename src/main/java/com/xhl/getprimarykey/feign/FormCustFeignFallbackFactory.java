@@ -11,6 +11,7 @@ public class FormCustFeignFallbackFactory implements FallbackFactory<FormCustFei
 
     @Override
     public FormCustFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new FormCustFeignService() {
             @Override
             public String checkFormCustHealth() {

@@ -11,6 +11,7 @@ public class MailXXLJOBFeignFallbackFactory implements FallbackFactory<MailXXLJO
 
     @Override
     public MailXXLJOBFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new MailXXLJOBFeignService() {
             @Override
             public String checkMailXXLJOBHealth() {

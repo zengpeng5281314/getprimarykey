@@ -11,6 +11,7 @@ public class CussLoginFeignFallbackFactory implements FallbackFactory<CussLoginF
 
     @Override
     public CussLoginFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new CussLoginFeignService() {
             @Override
             public String checkCussLoginHealth() {

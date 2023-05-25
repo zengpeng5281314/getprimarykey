@@ -11,6 +11,7 @@ public class VisitorChatFeignFallbackFactory implements FallbackFactory<VisitorC
 
     @Override
     public VisitorChatFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new VisitorChatFeignService() {
             @Override
             public String checkVisitorChatHealth() {

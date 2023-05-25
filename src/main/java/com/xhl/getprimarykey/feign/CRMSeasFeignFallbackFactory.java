@@ -11,6 +11,7 @@ public class CRMSeasFeignFallbackFactory implements FallbackFactory<CRMSeasFeign
 
     @Override
     public CRMSeasFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new CRMSeasFeignService() {
             @Override
             public String checkCrmSeasHealth() {

@@ -11,6 +11,7 @@ public class RuleFeignFallbackFactory implements FallbackFactory<RuleFeignServic
 
     @Override
     public RuleFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new RuleFeignService() {
             @Override
             public String checkRuleHealth() {

@@ -11,6 +11,7 @@ public class XddPluginFeignFallbackFactory implements FallbackFactory<XddPluginF
 
     @Override
     public XddPluginFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new XddPluginFeignService() {
             @Override
             public String checkXddPluginHealth() {

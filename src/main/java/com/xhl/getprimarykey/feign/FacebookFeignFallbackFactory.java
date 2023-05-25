@@ -11,6 +11,7 @@ public class FacebookFeignFallbackFactory implements FallbackFactory<FacebookFei
 
     @Override
     public FacebookFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new FacebookFeignService() {
             @Override
             public String checkFaceBookHealth() {

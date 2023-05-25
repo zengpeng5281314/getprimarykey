@@ -11,6 +11,7 @@ public class TranslationFeignFallbackFactory implements FallbackFactory<Translat
 
     @Override
     public TranslationFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new TranslationFeignService() {
             @Override
             public String checkTranslationHealth() {

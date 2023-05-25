@@ -11,6 +11,7 @@ public class AppPushFeignFallbackFactory implements FallbackFactory<AppPushFeign
 
     @Override
     public AppPushFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new AppPushFeignService() {
             @Override
             public String checkAppPushHealth() {

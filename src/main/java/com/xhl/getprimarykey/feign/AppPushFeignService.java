@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(value = "app-push",  fallbackFactory = AppPushFeignFallbackFactory.class)
 public interface AppPushFeignService {
 
-    @GetMapping("/app_push/status/health")
+    @GetMapping("/app-push/status/health")
     String checkAppPushHealth();
 
 }

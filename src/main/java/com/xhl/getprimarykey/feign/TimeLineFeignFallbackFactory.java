@@ -11,6 +11,7 @@ public class TimeLineFeignFallbackFactory implements FallbackFactory<TimeLineFei
 
     @Override
     public TimeLineFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new TimeLineFeignService() {
             @Override
             public String checkTimeLineHealth() {

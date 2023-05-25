@@ -11,6 +11,7 @@ public class NewPrivilegeFeignFallbackFactory implements FallbackFactory<NewPriv
 
     @Override
     public NewPrivilegeFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new NewPrivilegeFeignService() {
             @Override
             public String checkNewPrivilegeHealth() {

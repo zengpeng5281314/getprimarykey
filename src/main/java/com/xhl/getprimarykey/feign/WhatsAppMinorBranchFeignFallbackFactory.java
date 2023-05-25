@@ -11,6 +11,7 @@ public class WhatsAppMinorBranchFeignFallbackFactory implements FallbackFactory<
 
     @Override
     public WhatsAppMinorBranchFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new WhatsAppMinorBranchFeignService() {
             @Override
             public String checkWhatsAppMinorBranchHealth() {

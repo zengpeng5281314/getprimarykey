@@ -11,6 +11,7 @@ public class WhatsAppFeignFallbackFactory implements FallbackFactory<WhatsAppFei
 
     @Override
     public WhatsAppFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new WhatsAppFeignService() {
             @Override
             public String checkWhatsAppHealth() {

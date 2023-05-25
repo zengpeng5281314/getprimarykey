@@ -11,6 +11,7 @@ public class MarketingSiteFeignFallbackFactory implements FallbackFactory<Market
 
     @Override
     public MarketingSiteFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new MarketingSiteFeignService() {
             @Override
             public String checkMarketingSiteHealth() {

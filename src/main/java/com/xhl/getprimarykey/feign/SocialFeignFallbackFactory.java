@@ -11,6 +11,7 @@ public class SocialFeignFallbackFactory implements FallbackFactory<SocialFeignSe
 
     @Override
     public SocialFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new SocialFeignService() {
             @Override
             public String checkSocialHealth() {

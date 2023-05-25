@@ -11,6 +11,7 @@ public class ESFeignFallbackFactory implements FallbackFactory<EsFeignService> {
 
     @Override
     public EsFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new EsFeignService() {
             @Override
             public String checkESHealth() {

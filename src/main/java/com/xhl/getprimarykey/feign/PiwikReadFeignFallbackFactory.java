@@ -11,6 +11,7 @@ public class PiwikReadFeignFallbackFactory implements FallbackFactory<PiwikReadF
 
     @Override
     public PiwikReadFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new PiwikReadFeignService() {
             @Override
             public String checkPiwikReadHealth() {

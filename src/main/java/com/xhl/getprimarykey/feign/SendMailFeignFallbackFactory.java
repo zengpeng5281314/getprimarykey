@@ -11,6 +11,7 @@ public class SendMailFeignFallbackFactory implements FallbackFactory<SendMailFei
 
     @Override
     public SendMailFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new SendMailFeignService() {
             @Override
             public String checkSendMailHealth() {

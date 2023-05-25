@@ -11,6 +11,7 @@ public class MailFeignFallbackFactory implements FallbackFactory<MailFeignServic
 
     @Override
     public MailFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new MailFeignService() {
             @Override
             public String checkMailHealth() {

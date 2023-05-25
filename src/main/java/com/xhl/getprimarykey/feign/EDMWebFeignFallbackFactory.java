@@ -11,6 +11,7 @@ public class EDMWebFeignFallbackFactory implements FallbackFactory<EDMWebFeignSe
 
     @Override
     public EDMWebFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new EDMWebFeignService() {
             @Override
             public String checkEdmWebHealth() {

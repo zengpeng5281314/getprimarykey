@@ -11,6 +11,7 @@ public class ReportFeignFallbackFactory implements FallbackFactory<ReportFeignSe
 
     @Override
     public ReportFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new ReportFeignService() {
             @Override
             public String checkReportHealth() {

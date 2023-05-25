@@ -11,6 +11,7 @@ public class OverSeaXXLJobFeignFallbackFactory implements FallbackFactory<OverSe
 
     @Override
     public OverSeaXXLJobFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new OverSeaXXLJobFeignService() {
             @Override
             public String checkOverSeaXXLJobHealth() {

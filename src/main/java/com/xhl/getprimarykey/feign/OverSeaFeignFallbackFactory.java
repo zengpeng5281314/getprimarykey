@@ -11,6 +11,7 @@ public class OverSeaFeignFallbackFactory implements FallbackFactory<OverSeaFeign
 
     @Override
     public OverSeaFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new OverSeaFeignService() {
             @Override
             public String checkOverseaHealth() {

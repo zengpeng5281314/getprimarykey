@@ -11,6 +11,7 @@ public class PGatewayFeignFallbackFactory implements FallbackFactory<PGatewayFei
 
     @Override
     public PGatewayFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new PGatewayFeignService() {
             @Override
             public String checkPGatewayHealth() {

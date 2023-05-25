@@ -11,6 +11,7 @@ public class CRMTransferFeignFallbackFactory implements FallbackFactory<CRMTrans
 
     @Override
     public CRMTransferFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new CRMTransferFeignService() {
             @Override
             public String checkCrmTransferHealth() {

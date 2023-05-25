@@ -11,6 +11,7 @@ public class FileSysFeignFallbackFactory implements FallbackFactory<FileSysFeign
 
     @Override
     public FileSysFeignService create(Throwable cause) {
+        cause.printStackTrace();
         return new FileSysFeignService() {
             @Override
             public String checkFileSysHealth() {
