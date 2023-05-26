@@ -129,7 +129,6 @@ public class ICheckHealthServiceImpl implements ICheckHealthService {
             int whatsUpTeam = 0;
 
             String result = appPushFeignService.checkAppPushHealth();
-            log.info("apppush:"+result);
             if ("接口调用异常！".equals(result)) {
                 log.warning("appPush服务异常");
                 serName.append("app推送服务， ");
@@ -137,14 +136,12 @@ public class ICheckHealthServiceImpl implements ICheckHealthService {
             }
 
             result = chatGPTFeignService.checkChatGPTHealth();
-            log.info("chatGPT:"+result);
             if ("接口调用异常！".equals(result)) {
                 log.warning("chatGPT服务异常");
                 serName.append("chatGPT， ");
                 allTeam = 1;
             }
             result = cloudShareFeignService.checkCloudShareHealth();
-            log.info("cloudShare:"+result);
             if ("接口调用异常！".equals(result)) {
                 log.warning("cloudShare服务异常");
                 serName.append("cloudShare， ");
@@ -403,8 +400,6 @@ public class ICheckHealthServiceImpl implements ICheckHealthService {
                 allTeam = 1;
             }
             log.info("服务检查结束");
-            if(1==1)
-                return;
             if (StringUtils.isNotBlank(serName.toString())) {
                 //五分钟之内只调用一次电话通知接口
                 if (redisUtil.setIfAbsentOutTime("sendVoid", serName.toString(), 5, TimeUnit.MINUTES)) {
