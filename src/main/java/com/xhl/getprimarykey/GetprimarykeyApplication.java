@@ -24,7 +24,7 @@ public class GetprimarykeyApplication {
     }
 
     @GetMapping("/status/health")
-    public int healthCheck(){
+    public int healthCheck() {
         return 1;
     }
 }
